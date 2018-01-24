@@ -3,7 +3,7 @@
 import pandas as pd
 import statsmodels.api as sm
 
-if __name__ == "__main__":
+def main():
     df = pd.read_pickle('../data/sample_data.pkl')
 
     f = open('../result/regress_listwise.txt', 'w')
@@ -39,7 +39,8 @@ if __name__ == "__main__":
     result = model.fit()
     print(result.summary(), file=f)
 
-
+if __name__ == "__main__":
+    main()
 
 
 

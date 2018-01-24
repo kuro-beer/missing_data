@@ -9,7 +9,7 @@ missing_ratio = 0.3
 sample_size = 200
 seed = 123
 
-if __name__ == "__main__":
+def main():
     np.random.seed(seed)
     x1 = np.random.randn(sample_size)
     x2 = np.random.randn(sample_size)
@@ -89,6 +89,7 @@ if __name__ == "__main__":
     plt.savefig('../fig/sample_scatter.png', format='png')
     df.to_pickle('../data/sample_data.pkl')
 
-
+if __name__ == "__main__":
+    main()
 
 

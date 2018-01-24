@@ -2,10 +2,10 @@
 
 import numpy as np
 import pandas as pd
-from scipy.stats import t, sem
+from scipy.stats import t
 from matplotlib import pyplot as plt
 
-if __name__ == "__main__":
+def main():
     df = pd.read_pickle('../data/sample_data.pkl')
 
     x1_mean = df.x1.loc[df.x1_case1 == 1].mean()
@@ -36,3 +36,5 @@ if __name__ == "__main__":
     print("Mean: {0:.4f}".format(m))
     print("95%CI:", t.interval(alpha=0.95, df=len(arr), loc=m, scale=e))
 
+if __name__ == "__main__":
+    main()
