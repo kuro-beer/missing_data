@@ -3,10 +3,7 @@
 import numpy as np
 import pandas as pd
 
-import statsmodels.api as sm
-
-from matplotlib import pyplot as plt
-from scipy.stats import norm, poisson, uniform
+from scipy.stats import norm, uniform
 from scipy.optimize import minimize
 
 missing_ratio = 0.3
@@ -31,7 +28,7 @@ def loglike(pdf, data, **kwargs):
     return np.sum(np.log(pdf(data, **kwargs)))
 
 def _loglike_norm(x, *args):
-    return -np.sum(np.log(norm.pdf(args[0], x[0], x[1]) + 1e-8))
+    return -np.sum(np.log(norm.pdf(args[0], x[0], x[1])))
 
 def mle_norm(data, x0=None):
     if x0 == None:
@@ -63,10 +60,11 @@ def main():
     d = np.random.random_integers(0, 10, 3)
     params = {"loc": 0,
               "scale": 10}
-    print(d)
+
     print(loglike(data=d, pdf=uniform.pdf, **params))
 
-    print(mle_norm(data=df.y1))
+    print(df.y1[-10:])
+    print(mle_norm(data=df.y1, x0=[1, 10]))
 
 
 if __name__ == "__main__":
